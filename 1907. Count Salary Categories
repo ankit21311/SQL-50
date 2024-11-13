@@ -1,0 +1,23 @@
+# Write your MySQL query statement below
+select 'Low Salary' as category , count(account_id) as accounts_count
+from accounts
+where income <20000
+
+union all
+
+select 'Average Salary' as category , count(account_id) as accounts_count
+from accounts
+where income >= 20000 and income <= 50000
+
+union all
+
+select 'High Salary' as category , count(account_id) as accounts_count
+from accounts
+where income > 50000
+
+order by 
+    case 
+    when category = 'High Salary' then 1
+    when category = 'Low Salary' then 2
+    when category = 'Average Salary' then 3
+    end;
